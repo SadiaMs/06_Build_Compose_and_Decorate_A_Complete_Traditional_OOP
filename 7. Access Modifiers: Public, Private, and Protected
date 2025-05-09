@@ -1,0 +1,24 @@
+class Employee:
+    def __init__(self, name, salary, ssn):
+        self.name = name        # public variable
+        self._salary = salary   # protected variable (by convention)
+        self.__ssn = ssn        # private variable (name mangled)
+
+    def display_info(self):
+        print("Name:", self.name)
+        print("Salary:", self._salary)
+        print("SSN:", self.__ssn)
+
+# Create an object
+emp = Employee("Sarah", 50000, "123-45-6789")
+
+# Accessing variables
+print("Public:", emp.name)        # ✅ Accessible
+print("Protected:", emp._salary)  # ⚠️ Accessible but discouraged
+try:
+    print("Private:", emp.__ssn)  # ❌ Will raise AttributeError
+except AttributeError:
+    print("Private: Cannot access __ssn directly (AttributeError)")
+
+# Accessing private variable using name mangling (not recommended)
+print("Accessing private with name mangling:", emp._Employee__ssn)
